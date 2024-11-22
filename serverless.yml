@@ -13,6 +13,9 @@ provider:
         - dynamodb:PutItem
       Resource: arn:aws:dynamodb:us-east-1:752337386026:table/People
 
+plugins:
+  - serverless-openapi-documenter
+
 functions:
   hello:
     handler: .build/application/handlers/people/hello.main
@@ -54,3 +57,76 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5
+
+custom:
+  documentation:
+    models:
+      - name: Person
+        description: 'Modelo que representa una persona'
+        contentType: 'application/json'
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: 'Identificador único de la persona en la base de datos'
+            nombre:
+              type: string
+              description: 'Nombre de la persona'
+            altura:
+              type: string
+              description: 'Altura de la persona'
+            masa:
+              type: string
+              description: 'Peso de la persona en kilogramos'
+            color_de_cabello:
+              type: string
+              description: 'Color del cabello de la persona'
+            color_de_ojos:
+              type: string
+              description: 'Color de los ojos de la persona'
+            color_de_piel:
+              type: string
+              description: 'Color de piel de la persona'
+            año_de_nacimiento:
+              type: string
+              description: 'Año en que la persona nació'
+            genero:
+              type: string
+              description: 'Género de la persona'
+            planeta_natal:
+              type: string
+              description: 'URL del planeta natal de la persona'
+            peliculas:
+              type: array
+              items:
+                type: string
+              description: 'Películas en las que la persona aparece'
+            especies:
+              type: array
+              items:
+                type: string
+              description: 'Especies a las que pertenece la persona'
+            vehículos:
+              type: array
+              items:
+                type: string
+              description: 'Vehículos asociados a la persona'
+            naves_estelares:
+              type: array
+              items:
+                type: string
+              description: 'Naves estelares asociadas a la persona'
+            creado:
+              type: string
+              format: date-time
+              description: 'Fecha de creación del registro'
+            editado:
+              type: string
+              format: date-time
+              description: 'Fecha de la última edición del registro'
+            url:
+              type: string
+              description: 'URL del recurso de la persona'
+          required:
+            - nombre

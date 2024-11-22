@@ -11,6 +11,7 @@ describe('PeopleService', () => {
   beforeEach(() => {
     mockedPeopleRepository =
       new PeopleRepository() as jest.Mocked<PeopleRepository>
+
     peopleService = new PeopleService(mockedPeopleRepository)
   })
 
