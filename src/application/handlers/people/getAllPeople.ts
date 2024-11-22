@@ -1,7 +1,6 @@
 import { APIGatewayEvent, Context } from 'aws-lambda'
 import { PeopleRepository } from '../../../infraestructure/repositories/PeopleRepository'
 import { PeopleService } from '../../services/PeopleService'
-import { ApiGatewayApiAsset } from 'aws-sdk/clients/dataexchange'
 
 const peopleRepository = new PeopleRepository()
 const peopleService = new PeopleService(peopleRepository)
