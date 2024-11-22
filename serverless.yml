@@ -9,7 +9,7 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: .build/application/handlers/people/hello.main
     events:
       - httpApi:
           path: /
