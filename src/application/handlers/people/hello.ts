@@ -7,7 +7,7 @@ export const main = async (event: APIGatewayEvent, context: Context) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Hello from TypeScript!',
+        message: 'Bienvenido a nuestro Serverless API con Typescript!',
       }),
     }
   } catch (error) {
