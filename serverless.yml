@@ -6,6 +6,12 @@ service: serverless-typescript-api
 provider:
   name: aws
   runtime: nodejs20.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:PutItem
+      Resource: arn:aws:dynamodb:us-east-1:752337386026:table/People
 
 functions:
   hello:
@@ -14,3 +20,25 @@ functions:
       - httpApi:
           path: /
           method: get
+  getAllPeople:
+    handler: .build/application/handlers/people/getAllPeople.getAllPeople
+    events:
+      - httpApi:
+          path: /people
+          method: get
+
+resources:
+  Resources:
+    PeopleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: People
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
