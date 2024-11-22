@@ -15,4 +15,8 @@ export class PeopleService {
   public async createPerson(person: IPerson): Promise<IPerson> {
     return this.peopleRepository.create(person)
   }
+
+  public async getAllPeopleFromSWAPI(): Promise<IPerson[]> {
+    return this.peopleRepository.getAllPeopleFromSWAPI()
+  }
 }

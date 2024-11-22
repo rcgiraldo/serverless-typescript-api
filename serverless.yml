@@ -32,6 +32,12 @@ functions:
       - httpApi:
           path: /people
           method: post
+  getAllPeopleFromSwapi:
+    handler: .build/application/handlers/people/getAllPeopleFromSwapi.getAllPeopleFromSwapi
+    events:
+      - httpApi:
+          path: /starwars/people
+          method: get
 
 resources:
   Resources:

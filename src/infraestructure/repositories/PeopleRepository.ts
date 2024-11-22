@@ -1,5 +1,6 @@
 import { DynamoDB } from 'aws-sdk'
 import { IPerson } from '../../domain/models/IPerson'
+import { fetchAllPeopleFromSWAPI } from '../api/swapiService'
 
 const dynamoDB = new DynamoDB.DocumentClient()
 const TABLE_NAME = 'People'
@@ -32,5 +33,9 @@ export class PeopleRepository {
       console.error('Error creating person:', error)
       throw new Error('Error creating person')
     }
+  }
+
+  public async getAllPeopleFromSWAPI(): Promise<IPerson[]> {
+    return fetchAllPeopleFromSWAPI()
   }
 }
