@@ -1,5 +1,5 @@
 import { PeopleRepository } from '../../infraestructure/repositories/PeopleRepository'
-import { IPeople } from '../../domain/models/IPeople'
+import { IPerson } from '../../domain/models/IPerson'
 
 export class PeopleService {
   private peopleRepository: PeopleRepository
@@ -8,7 +8,11 @@ export class PeopleService {
     this.peopleRepository = peopleRepository
   }
 
-  public async getAllPeople(): Promise<IPeople[]> {
+  public async getAllPeople(): Promise<IPerson[]> {
     return this.peopleRepository.getAll()
+  }
+
+  public async createPerson(person: IPerson): Promise<IPerson> {
+    return this.peopleRepository.create(person)
   }
 }

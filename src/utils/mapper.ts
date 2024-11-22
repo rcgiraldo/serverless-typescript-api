@@ -1,6 +1,6 @@
-import { IPeople } from '../domain/models/IPeople'
+import { IPerson } from '../domain/models/IPerson'
 
-export const mapPeopleAttributes = (person: any): IPeople => {
+export const mapPersonAttributes = (person: any): IPerson => {
   return {
     id: person.id || '',
     nombre: person.name,

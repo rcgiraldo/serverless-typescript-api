@@ -26,6 +26,12 @@ functions:
       - httpApi:
           path: /people
           method: get
+  createPerson:
+    handler: .build/application/handlers/people/createPerson.createPerson
+    events:
+      - httpApi:
+          path: /people
+          method: post
 
 resources:
   Resources:

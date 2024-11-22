@@ -1,29 +1,30 @@
 import { APIGatewayEvent, Context } from 'aws-lambda'
 import { PeopleRepository } from '../../../infraestructure/repositories/PeopleRepository'
 import { PeopleService } from '../../services/PeopleService'
-import { ApiGatewayApiAsset } from 'aws-sdk/clients/dataexchange'
 
 const peopleRepository = new PeopleRepository()
 const peopleService = new PeopleService(peopleRepository)
 
-export const getAllPeople = async (
+export const createPerson = async (
   event: APIGatewayEvent,
   context: Context
 ) => {
+  const requestBody = JSON.parse(event.body || '{}')
+
   try {
-    const people = await peopleService.getAllPeople()
+    const newPerson = await peopleService.createPerson(requestBody)
     return {
-      statusCode: 200,
+      statusCode: 201,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(people),
+      body: JSON.stringify(newPerson),
     }
   } catch (error) {
-    console.error('Error getting people:', error)
+    console.error('Error creating person:', error)
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Error fetching people from database' }),
+      body: JSON.stringify({ error: 'Error creating person' }),
     }
   }
 }
